@@ -29,7 +29,7 @@ public class CustomerService {
     public Customer save(Customer c,List<Long> pIds){
         List<Pet> pets = new ArrayList<>();
         if (pIds!=null && !pIds.isEmpty()){
-            pets= pIds.stream().map((petId)-> petRepo.getOne(petId)).collect(Collectors.toList());
+            for (Long pId: pIds) { pets.add(petRepo.getOne(pId)); }
         }
 
         c.setPets(pets);

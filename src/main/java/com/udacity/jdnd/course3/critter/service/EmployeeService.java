@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -25,7 +26,7 @@ public class EmployeeService {
     }
 
 
-    public List<Employee> getEmployeesBySkills(LocalDate date, List<EmployeeSkill> skills){
+    public List<Employee> getEmployeesBySkills(LocalDate date, Set<EmployeeSkill> skills){
         return empRepo
                 .findByDaysAvailable(date.getDayOfWeek()).stream()
                 .filter(employee-> employee.getSkills().containsAll(skills))
@@ -38,7 +39,7 @@ public class EmployeeService {
     }
 
 
-    public void setAvailability(List<DayOfWeek> days, Long empId){
+    public void setAvailability(Set<DayOfWeek> days, Long empId){
         Employee emp=empRepo.getOne(empId);
         emp.setDaysAvailable(days);
         empRepo.save(emp);

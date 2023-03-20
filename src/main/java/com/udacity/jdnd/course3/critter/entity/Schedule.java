@@ -5,6 +5,7 @@ import com.udacity.jdnd.course3.critter.user.EmployeeSkill;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Table
 @Entity
@@ -17,8 +18,13 @@ public class Schedule {
     @ManyToMany(targetEntity=Employee.class)
     private List<Employee> employees;
     @ElementCollection
-    private List<EmployeeSkill> activities;
+    private Set<EmployeeSkill> activities;
     private LocalDate date;
+
+    public Schedule(LocalDate date, Set<EmployeeSkill> activities) {
+        this.date = date;
+        this.activities = activities;
+    }
 
     public Schedule() {
     }
@@ -47,11 +53,11 @@ public class Schedule {
         this.employees = employees;
     }
 
-    public List<EmployeeSkill> getActivities() {
+    public Set<EmployeeSkill> getActivities() {
         return activities;
     }
 
-    public void setActivities(List<EmployeeSkill> activities) {
+    public void setActivities(Set<EmployeeSkill> activities) {
         this.activities = activities;
     }
 

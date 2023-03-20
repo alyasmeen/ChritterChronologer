@@ -13,6 +13,14 @@ public class Customer {
     private String phoneNumber;
     @OneToMany(targetEntity = Pet.class)
     private List<Pet> pets;
+    private String notes;
+
+    public Customer(Long id, String name, String phoneNumber, String notes) {
+        this.id = id;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.notes = notes;
+    }
 
     public Customer() {
     }
@@ -47,5 +55,13 @@ public class Customer {
 
     public void setPets(List<Pet> pets) {
         this.pets = pets;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 }
